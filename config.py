@@ -1,0 +1,1 @@
+######################### Contains the constants and configurable parameters of the game (colors, dimensions, speeds..)####################
