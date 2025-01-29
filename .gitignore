@@ -1,0 +1,35 @@
+# Ignore les fichiers compilés Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore les fichiers log
+*.log
+
+# Ignore les fichiers temporaires de Pygame
+*.bak
+*.swp
+
+# Ignore les fichiers d'environnement virtuel (si tu utilises un venv)
+venv/
+env/
+*.env
+
+# Ignore les fichiers générés par PyCharm/IDE
+.idea/
+
+# Ignore les dossiers de cache ou autres fichiers temporaires
+*.log
+*.sqlite3
+
+# Ignore les fichiers d'image de Pygame si nécessaires
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+
+# Fichiers temporaires spécifiques
+*.DS_Store  # Pour macOS
+*.Thumbs.db  # Pour Windows
