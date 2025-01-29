@@ -1,0 +1,60 @@
+######################### Contains the constants and configurable parameters of the game (colors, dimensions, speeds..)####################
+
+
+# Screen dimensions
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 600
+
+# Colors
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+ORANGE = (255, 165, 0)
+
+# Game settings
+FPS = 60
+FRUIT_SPEED = 3
+FRUIT_MIN_SPEED = 2
+FRUIT_MAX_SPEED = 5
+FRUIT_SPAWN_INTERVAL = 1000 
+MIN_FRUIT_SIZE = 30
+MAX_FRUIT_SIZE = 70
+
+
+# Knife settings
+KNIFE_WIDTH = 10
+KNIFE_HEIGHT = 30
+KNIFE_SPEED = 10
+KNIFE_COLOR = WHITE 
+
+# Score settings
+SCORE_POSITION = (10, 10)
+SCORE_FONT_SIZE = 30
+SCORE_COLOR = WHITE
+
+
+# Menu settings
+MENU_FONT_SIZE = 50
+MENU_BUTTON_COLOR = (100, 100, 100)
+MENU_BUTTON_HOVER_COLOR = (150, 150, 150)
+MENU_BUTTON_TEXT_COLOR = WHITE
+MENU_BUTTON_WIDTH = 200
+MENU_BUTTON_HEIGHT = 50
+
+# Game over settings
+GAME_OVER_FONT_SIZE = 60
+GAME_OVER_TEXT_COLOR = WHITE
+GAME_OVER_BUTTON_COLOR = (100, 100, 100)
+GAME_OVER_BUTTON_HOVER_COLOR = (150, 150, 150)
+GAME_OVER_BUTTON_TEXT_COLOR = WHITE
+GAME_OVER_BUTTON_WIDTH = 200
+GAME_OVER_BUTTON_HEIGHT = 50
+
+
+# Folder locations
+IMAGE_FOLDER = "./fruit-slicer/assets/images/"
+SOUND_FOLDER = "./fruit-slicer/assets/sounds/"
+FONT_FOLDER = "./fruit-slicer/assets/fonts/"
