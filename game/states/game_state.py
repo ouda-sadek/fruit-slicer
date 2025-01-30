@@ -30,9 +30,9 @@ class GameState:
         speed = random.randint(FRUIT_MIN_SPEED, FRUIT_MAX_SPEED)
         x = random.randint(size, SCREEN_WIDTH - size)
         y = -size
-        fruit_type = random.choice(["apple", "banana", "orange", "kiwi"])
+        fruit_type = random.choice(["apple", "banana", "orange", "kiwi", "watermelon","pasteque"])
         self.fruits.append(Fruit(x, y, size, speed, fruit_type))
-
+        
     def update(self):
         if self.game_over:
             return "game_over"
