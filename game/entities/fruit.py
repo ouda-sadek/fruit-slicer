@@ -1,11 +1,9 @@
 ########################### The Fruit class and the logic for drawing, moving and detecting collisions ###############################
 
 import pygame
-import sys
+from sys import *
 from os import *
 from config import *
-
-
 
 class Fruit:
     def __init__(self, x, y, size, speed, fruit_type):
@@ -36,14 +34,14 @@ class Fruit:
 
     def load_image(self, fruit_type):
         try:
-            if fruit_type == "apple":
-                image = pygame.image.load(IMAGE_FOLDER + "apple.png").convert_alpha()
-            elif fruit_type == "banana":
-                image = pygame.image.load(IMAGE_FOLDER + "banana.png").convert_alpha()
+            if fruit_type == "melon":
+                image = pygame.image.load(IMAGE_FOLDER + "melon.png").convert_alpha()
+            elif fruit_type == "pomegranate":
+                image = pygame.image.load(IMAGE_FOLDER + "pomegranate.png").convert_alpha()
             elif fruit_type == "orange":
                 image = pygame.image.load(IMAGE_FOLDER + "orange.png").convert_alpha()
-            elif fruit_type == "kiwi":
-                image = pygame.image.load(IMAGE_FOLDER + "kiwi.png").convert_alpha()
+            elif fruit_type == "guava":
+                image = pygame.image.load(IMAGE_FOLDER + "guava.png").convert_alpha()
             else:
                 raise ValueError(f"Invalid fruit type: {fruit_type}")
             image = pygame.transform.scale(image, (self.size, self.size))

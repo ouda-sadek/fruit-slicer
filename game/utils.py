@@ -1,6 +1,7 @@
 ##################################### File for utility functions (collision detection, generation of random objects...) ###########
 
 import pygame
+from pygame.locals import *
 
 def check_collision(rect1, rect2):
     return rect1.colliderect(rect2)

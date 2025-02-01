@@ -1,8 +1,11 @@
 ####################################### Class for the game menu   ##############################################################
 
 import pygame
+import os
 from pygame.locals import *
-from config import *
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
+from config import * 
 
 
 class Menu:
@@ -10,20 +13,27 @@ class Menu:
         self.screen = screen
         self.font = pygame.font.Font(None, MENU_FONT_SIZE)
         self.buttons = self.create_menu_buttons()
+        self.background = pygame.image.load(os.path.join(os.path.dirname(__file__), "../../assets/images/background1.png"))
+        self.background = pygame.transform.scale(self.background, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
        
     def create_menu_buttons(self):
         button_width = MENU_BUTTON_WIDTH
         button_height = MENU_BUTTON_HEIGHT
-        play_x = SCREEN_WIDTH // 2 - button_width // 2
-        play_y = SCREEN_HEIGHT // 2 - button_height // 2 - button_height
-        exit_x = play_x
-        exit_y = SCREEN_HEIGHT // 2 + button_height // 2
+        play_x = 420
+        play_y = 40
+        setting_x = 120
+        setting_y = 180
+        exit_x = play_x + 300
+        exit_y = setting_y
 
-        play_text, play_rect, play_button = self.create_button("Play", self.font, play_x + button_width // 2, play_y + button_height // 2)       
+        play_text, play_rect, play_button = self.create_button("Play", self.font, play_x + button_width // 2, play_y + button_height // 2)
+        setting_text, setting_rect, setting_button = self.create_button("Setting", self.font, setting_x + button_width // 2, setting_y + button_height // 2)       
         exit_text, exit_rect, exit_button = self.create_button("Exit", self.font, exit_x + button_width // 2, exit_y + button_height // 2)
-
+    
         buttons = {
             "Play": (play_text, play_rect, play_button),
+            "Setting": (setting_text, setting_rect, setting_button),
             "Exit": (exit_text, exit_rect, exit_button),
         }
         return buttons
@@ -35,8 +45,11 @@ class Menu:
         return text_surface, text_rect, button_rect
     
     def draw_button(self, text_surface, text_rect, button_rect, color):
-        pygame.draw.rect(self.screen, color, button_rect)
+        pygame.draw.rect(self.screen, color, button_rect, border_radius=20)
         self.screen.blit(text_surface, text_rect)
+    
+    
+     
 
     def handle_events(self, event):
         if event.type == MOUSEBUTTONDOWN:
@@ -56,6 +69,9 @@ class Menu:
         return self.next_state   if hasattr(self, 'next_state') else None
     
     def draw(self):
-        pass
+        self.screen.blit(self.background, (0, 0))  
+        for text_surface, text_rect, button_rect in self.buttons.values():
+         self.draw_button(text_surface, text_rect, button_rect, MENU_BUTTON_COLOR) 
+    
 
 
