@@ -1,5 +1,4 @@
 #################################### The logic of the main game (movement of fruits, score...) ##########################
-
 import pygame
 from pygame.locals import *
 import random
@@ -21,6 +20,9 @@ class GameState:
         self.combo_count = 0
         self.paused = False
         self.pause_duration = 0
+        self.pause_button_rect = pygame.Rect(PAUSE_BUTTON_POSITION, (PAUSE_BUTTON_WIDTH, PAUSE_BUTTON_HEIGHT))
+        self.pause_text = self.font.render("Pause", True, PAUSE_BUTTON_TEXT_COLOR)
+        self.pause_text_rect = self.pause_text.get_rect(center=self.pause_button_rect.center)
 
     def handle_events(self, event):
       if event.type == pygame.KEYDOWN:
@@ -29,6 +31,10 @@ class GameState:
         for obj in list(self.objects):
           if event.unicode.upper() == obj.letter:
             self.slice_object(obj)
+      if event.type == pygame.MOUSEBUTTONDOWN:
+           mouse_pos = pygame.mouse.get_pos()
+           if self.pause_button_rect.collidepoint(mouse_pos):
+              self.paused = not self.paused
 
     def add_object(self):
         size = random.randint(MIN_FRUIT_SIZE, MAX_FRUIT_SIZE)
@@ -63,22 +69,24 @@ class GameState:
         if self.game_over:
             return "game_over"
         if self.paused:
-             if time.time() >= self.pause_duration:
-               self.paused = False
-             return
+            if time.time() >= self.pause_duration and self.pause_duration != 0:
+                self.paused = False
+                self.pause_duration = 0
+            return
+            
+        if not self.paused:
+            if time.time() - self.last_object_spawn_time > OBJECT_SPAWN_INTERVAL / 1000:
+                self.add_object()
+                self.last_object_spawn_time = time.time()
 
-        if time.time() - self.last_object_spawn_time > OBJECT_SPAWN_INTERVAL / 1000:
-            self.add_object()
-            self.last_object_spawn_time = time.time()
-
-        # Update fruit
-        for obj in list(self.objects):
-            obj.update()
-            if obj.y < -obj.size:
-                self.objects.remove(obj)
-                self.strikes += 1
-                if self.strikes >= MAX_STRIKES:
-                  self.game_over = True
+            # Update fruit
+            for obj in list(self.objects):
+                obj.update()
+                if obj.y < -obj.size:
+                    self.objects.remove(obj)
+                    self.strikes += 1
+                    if self.strikes >= MAX_STRIKES:
+                        self.game_over = True
         return None
        
     def draw(self):
@@ -89,6 +97,14 @@ class GameState:
         self.screen.blit(score_text, SCORE_POSITION)
         strikes_text = self.font.render(f"Strikes: {self.strikes}", True, SCORE_COLOR)
         self.screen.blit(strikes_text, (10, 50))
+        
+        # Draw pause button
+        mouse_pos = pygame.mouse.get_pos()
+        if self.pause_button_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, PAUSE_BUTTON_HOVER_COLOR, self.pause_button_rect)
+        else:
+            pygame.draw.rect(self.screen, PAUSE_BUTTON_COLOR, self.pause_button_rect)
+        self.screen.blit(self.pause_text, self.pause_text_rect)
 
     def get_score(self):
         return self.score

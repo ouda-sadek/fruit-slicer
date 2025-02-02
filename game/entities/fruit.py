@@ -1,5 +1,4 @@
 ########################### The Fruit class and the logic for drawing, moving and detecting collisions ###############################
-
 import pygame
 import sys
 import os
@@ -36,19 +35,19 @@ class Fruit:
             f"{object_type}.gif",  # Extension GIF
             f"{object_type}.webp", # Extension WEBP
         ]
-        # Check if image exists in assets folder
+        # Check if image exist in the folder specified  :   assets/images
         image_path = None
         for filename in image_files:
             image_path = os.path.join(IMAGE_FOLDER, filename)
             if os.path.exists(image_path):
                 break
         else:
-            # If no images were found
+            # If not found
             print(f"Error: Image file for {object_type} not found in any expected formats.")
             self.image = None
             return
         
-        # If the image is found, load it
+        # If image found , load it
         try:
             print(f"Loading image from: {image_path}")
             image = pygame.image.load(image_path).convert_alpha()
@@ -71,4 +70,3 @@ class Fruit:
             letter_text = self.font.render(self.letter, True, WHITE)  
             letter_rect = letter_text.get_rect(center=(self.rect.centerx, self.rect.centery - self.size // 2 - 10))  
             screen.blit(letter_text, letter_rect)
-        

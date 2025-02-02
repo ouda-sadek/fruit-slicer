@@ -1,5 +1,4 @@
 ####################################### Class for the game menu   ##############################################################
-
 import pygame
 from pygame.locals import *
 from config import *
@@ -56,5 +55,4 @@ class Menu:
         return self.next_state   if hasattr(self, 'next_state') else None
     
     def draw(self):
-        pass                      
-
+       pass
