@@ -1,6 +1,3 @@
-######################### Contains the constants and configurable parameters of the game (colors, dimensions, speeds..)####################
-
-
 # Screen dimensions
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -19,18 +16,21 @@ LIGHT_GRAY = (200, 200, 200)
 # Game settings
 FPS = 60
 FRUIT_SPEED = 3
-FRUIT_MIN_SPEED = 2
-FRUIT_MAX_SPEED = 5
-FRUIT_SPAWN_INTERVAL = 1000 
+FRUIT_MIN_SPEED = 1        #2
+FRUIT_MAX_SPEED = 1         #5
+OBJECT_SPAWN_INTERVAL = 1000 
 MIN_FRUIT_SIZE = 30
 MAX_FRUIT_SIZE = 70
 
+# Combo settings
+COMBO_TIME_WINDOW = 0.5
 
-# Knife settings
-KNIFE_WIDTH = 10
-KNIFE_HEIGHT = 30
-KNIFE_SPEED = 10
-KNIFE_COLOR = WHITE 
+# Strikes settings
+MAX_STRIKES = 3
+
+# Ice settings
+ICE_MIN_DURATION = 3
+ICE_MAX_DURATION = 5
 
 # Score settings
 SCORE_POSITION = (10, 10)
@@ -45,8 +45,8 @@ MENU_FONT_SIZE = 50
 MENU_BUTTON_TEXT_COLOR = WHITE
 MENU_BUTTON_WIDTH = 200
 MENU_BUTTON_HEIGHT = 50
-MENU_BUTTON_COLOR = GRAY  
-MENU_BUTTON_HOVER_COLOR = LIGHT_GRAY  
+MENU_BUTTON_COLOR = GRAY 
+MENU_BUTTON_HOVER_COLOR = LIGHT_GRAY
 
 # Game over settings
 GAME_OVER_FONT_SIZE = 60
