@@ -29,7 +29,7 @@ class GameState:
         size = random.randint(MIN_FRUIT_SIZE, MAX_FRUIT_SIZE)
         speed = random.randint(FRUIT_MIN_SPEED, FRUIT_MAX_SPEED)
         x = random.randint(size, SCREEN_WIDTH - size)
-        y = -size
+        y = SCREEN_HEIGHT + size
         fruit_type = random.choice(["apple", "banana", "orange", "kiwi", "watermelon","pasteque"])
         self.fruits.append(Fruit(x, y, size, speed, fruit_type))
         
@@ -71,6 +71,4 @@ class GameState:
         self.screen.blit(score_text, SCORE_POSITION)  
     
     #pygame.display.flip()
-    
-
     

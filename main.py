@@ -2,23 +2,23 @@
 import sys
 import pygame
 from pygame.locals import *
+import os
 from os import *
 from config import *
 from game.states.menu import Menu
 from game.states.game_state import GameState
 from game.states.game_over import GameOver
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 # Load assets
 def main():
     # Initialize pygame
     pygame.init()
-
     # Set up the window
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))  
     pygame.display.set_caption("Fruit Slicer Game")
     # Create the Clock object to control game speed
     clock = pygame.time.Clock()
-
     # The game starts with the menu
     current_state = Menu(screen)
 
@@ -27,7 +27,7 @@ def main():
     while running:
         for event in pygame.event.get():
             if event.type == QUIT:
-                running = False
+                running = False 
 
             # Event handling current state
             current_state.handle_events(event)
@@ -47,20 +47,18 @@ def main():
                 running = False
             else:
                 raise ValueError(f"Invalid next state: {next_state}")
-                    
-            
-        current_state.update()    
-        # Draw current state
-        current_state.draw()
-        pygame.display.flip()
 
+        screen.fill(BLACK)
+        current_state.update()             
+         # Draw current state
+        current_state.draw()  
+        pygame.display.flip()
         # Limit the game speed
         clock.tick(FPS)
     
     # Exit pygame
     pygame.quit()
     sys.exit()
-
 
 if __name__ == "__main__":
     main() 
