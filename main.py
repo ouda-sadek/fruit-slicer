@@ -41,14 +41,13 @@ def main():
             if next_state == "menu":
                 current_state = Menu(screen)
             if next_state == "play":
-            # Check if the submenu exists and if it has a selected theme
               if hasattr(current_state, 'submenu') and hasattr(current_state.submenu, 'theme_selected'):
-               theme = current_state.submenu.theme_selected
+                theme = current_state.submenu.theme_selected or "theme1"  # Assurer un thème par défaut
               else:
-               theme = "theme1"  # Default theme
-    
-               print(f"Chargement du thème : {theme}")  
-              current_state = GameState(screen, theme)
+                theme = "theme1"
+
+                print(f"Thème chargé dans GameState : {theme}")  # Vérification
+                current_state = GameState(screen, theme)
             elif next_state == "game_over":
                 current_state = GameOver(screen)
             elif next_state == "exit":

@@ -12,7 +12,7 @@ from game.entities.fruit import Fruit
 from game.entities.knife import Knife
 
 class GameState:
-    def __init__(self, screen, theme="theme1"):
+    def __init__(self, screen, theme="theme1,theme2,theme3"):
         self.screen = screen
         self.font = pygame.font.Font(None, SCORE_FONT_SIZE)
         self.theme = theme

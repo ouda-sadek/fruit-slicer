@@ -19,6 +19,8 @@ class SubMenu:
         self.theme_options = ["theme1", "theme2", "theme3"]  # List of available themes
         self.theme_buttons = self.create_theme_buttons()  # Buttons to choose a theme
         self.show_theme_options = False  # To show or hide theme options
+        self.next_state = None  # Initialize next_state to None
+        
 
     def create_submenu_buttons(self):
         button_width = MENU_BUTTON_WIDTH
@@ -51,9 +53,9 @@ class SubMenu:
         theme3_x = theme1_x + 300
         theme3_y = 180
 
-        theme1_text, theme1_rect, theme1_button = self.create_button("Theme 1", self.font, theme1_x + button_width // 2, theme1_y + button_height // 2)
-        theme2_text, theme2_rect, theme2_button = self.create_button("Theme 2", self.font, theme2_x + button_width // 2, theme2_y + button_height // 2)
-        theme3_text, theme3_rect, theme3_button = self.create_button("Theme 3", self.font, theme3_x + button_width // 2, theme3_y + button_height // 2)
+        theme1_text, theme1_rect, theme1_button = self.create_button("Theme1", self.font, theme1_x + button_width // 2, theme1_y + button_height // 2)
+        theme2_text, theme2_rect, theme2_button = self.create_button("Theme2", self.font, theme2_x + button_width // 2, theme2_y + button_height // 2)
+        theme3_text, theme3_rect, theme3_button = self.create_button("Theme3", self.font, theme3_x + button_width // 2, theme3_y + button_height // 2)
 
         buttons = {
             "theme1": (theme1_text, theme1_rect, theme1_button),
@@ -80,8 +82,9 @@ class SubMenu:
                 for theme_name, (_, _, button_rect) in self.theme_buttons.items():
                     if button_rect.collidepoint(mouse_pos):
                         self.theme_selected = theme_name
-                        print(f"Thème sélectionné : {theme_name}")
+                        print(f"Thème sélectionné dans SubMenu : {self.theme_selected}")
                         self.show_theme_options = False  # Hide theme options after selection
+                        self.next_state = "menu"  # Indicate that we should return to the main menu
             else:
                 # Managing clicks on submenu buttons
                 for name, (_, _, button_rect) in self.buttons.items():
@@ -92,7 +95,6 @@ class SubMenu:
                             print("Language clicked")
                         elif name == "Sounds":
                             print("Sounds clicked")
-
     def update(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.show_theme_options:
@@ -178,6 +180,17 @@ class Menu:
                             self.submenu = SubMenu(self.screen)  
                         elif name == "Exit":
                             self.next_state = "exit"
+                        elif name == "Play":
+                        # Récupérer le thème sélectionné dans le sous-menu
+                         if hasattr(self, 'submenu') and hasattr(self.submenu, 'theme_selected'):
+                            theme = self.submenu.theme_selected or "theme1"  # Thème par défaut si aucun n'est sélectionné
+                         else:
+                            theme = "theme1"  # Thème par défaut
+                         print(f"Thème sélectionné : {theme}")  # Vérification
+                         self.next_state = "play"
+                         # Stocker le thème pour le transmettre à GameState
+                         self.selected_theme = theme
+
                         else:
                             self.next_state = name.lower()
 
@@ -185,7 +198,7 @@ class Menu:
         if self.submenu:
             self.submenu.update()
             # Si le sous-menu a terminé son travail (par exemple, un bouton "Retour" est cliqué)
-            if hasattr(self.submenu, 'next_state') and self.submenu.next_state == "menu":
+            if self.submenu.next_state == "menu":
                 self.submenu = None  # Revenir au menu principal
         else:
             mouse_pos = pygame.mouse.get_pos()
