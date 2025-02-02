@@ -5,6 +5,7 @@
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+
 # Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -38,17 +39,12 @@ SCORE_COLOR = WHITE
 
 # Menu settings
 MENU_FONT_SIZE = 30
-MENU_BUTTON_COLOR = (0, 150, 0, 200)
+MENU_BUTTON_COLOR = (182,210,39,255)
 MENU_BUTTON_HOVER_COLOR = (0, 180, 0, 255)
-MENU_BUTTON_TEXT_COLOR = WHITE
-MENU_BUTTON_WIDTH = 50
-MENU_BUTTON_HEIGHT = 50
+MENU_BUTTON_TEXT_COLOR = BLACK
+MENU_BUTTON_WIDTH = 40
+MENU_BUTTON_HEIGHT = 20
 
-
-
-# background settings
-selected_background = 0
-backgrouns = ["background3.png", "background4.png", "background5.png"]
 
 # Game over settings
 GAME_OVER_FONT_SIZE = 60

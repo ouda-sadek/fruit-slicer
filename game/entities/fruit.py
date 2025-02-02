@@ -5,6 +5,7 @@ from sys import *
 from os import *
 from config import *
 
+
 class Fruit:
     def __init__(self, x, y, size, speed, fruit_type):
         self.x = x
@@ -14,7 +15,7 @@ class Fruit:
         self.fruit_type = fruit_type
         self.image = self.load_image(fruit_type)
         # Vérification du chemin de l'image
-        image_path = f"./fruit-slicer/assets/images/{self.fruit_type}.png"
+        image_path = f"../../assets/images/{self.fruit_type}.png"
         print(f"Loading image from: {image_path}")
         self.image = pygame.image.load(image_path ).convert_alpha()
         self.rect = self.image.get_rect(center=(self.x, self.y))

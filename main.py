@@ -13,7 +13,7 @@ from game.states.game_over import GameOver
 def main():
     # Initialize pygame
     pygame.init()
-
+    
     # Set up the window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     pygame.display.set_caption("Fruit Slicer Game")
@@ -22,7 +22,7 @@ def main():
 
     # The game starts with the menu
     current_state = Menu(screen)
-
+    
     # Main loop
     running = True
     while running:
@@ -40,12 +40,21 @@ def main():
         if next_state:
             if next_state == "menu":
                 current_state = Menu(screen)
-            elif next_state == "play":
-                current_state = GameState(screen)
+            if next_state == "play":
+            # Check if the submenu exists and if it has a selected theme
+              if hasattr(current_state, 'submenu') and hasattr(current_state.submenu, 'theme_selected'):
+               theme = current_state.submenu.theme_selected
+              else:
+               theme = "theme1"  # Default theme
+    
+               print(f"Chargement du thème : {theme}")  
+              current_state = GameState(screen, theme)
             elif next_state == "game_over":
                 current_state = GameOver(screen)
             elif next_state == "exit":
                 running = False
+            elif next_state == "setting":
+                pass
             else:
                 raise ValueError(f"Invalid next state: {next_state}")
                     
