@@ -61,9 +61,6 @@ class GameOver:
         self.screen.blit(game_over_text, game_over_rect)
 
         score_text = self.font.render(f"Score: {self.score}", True, GAME_OVER_TEXT_COLOR) 
+        score_rect = score_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
         self.screen.blit(score_text, score_rect)
-        #pygame.display.flip()
-
-
-
-    
+       
