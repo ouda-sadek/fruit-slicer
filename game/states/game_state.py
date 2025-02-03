@@ -12,7 +12,7 @@ from game.entities.fruit import Fruit
 from game.entities.knife import Knife
 
 class GameState:
-    def __init__(self, screen, theme="theme1,theme2,theme3"):
+    def __init__(self, screen, theme="theme1"):
         self.screen = screen
         self.font = pygame.font.Font(None, SCORE_FONT_SIZE)
         self.theme = theme
@@ -23,6 +23,8 @@ class GameState:
         self.last_fruit_spawn_time = time.time()
         self.game_over = False
         self.mouse_down = False
+        
+        
 
     def load_background(self):
         """Charge l'image de fond en fonction du thème sélectionné."""
@@ -31,11 +33,11 @@ class GameState:
             if self.theme == "theme1":
               image_path = os.path.join(base_dir, "assets", "images", "background3.png")
             elif self.theme == "theme2":
-               image_path = os.path.join(base_dir, "assets", "images", "background4.png")
+              image_path = os.path.join(base_dir, "assets", "images", "background4.png")
             elif self.theme == "theme3":
-               image_path = os.path.join(base_dir, "assets", "images", "background5.png")
+              image_path = os.path.join(base_dir, "assets", "images", "background5.png")
             else:
-               image_path = os.path.join(base_dir, "assets", "images", "background6.png")
+              image_path = os.path.join(base_dir, "assets", "images", "background6.png")
 
             background = pygame.image.load(image_path)
             background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
