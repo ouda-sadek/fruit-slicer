@@ -2,6 +2,9 @@
 import pygame
 from pygame.locals import *
 from config import *
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 
 
 class Menu:
@@ -9,6 +12,7 @@ class Menu:
         self.screen = screen
         self.font = pygame.font.Font(None, MENU_FONT_SIZE)
         self.buttons = self.create_menu_buttons()
+        #self.background = pygame.image.load(os.path.abspath(os.path.join(os.path.dirname(__file__), 
        
     def create_menu_buttons(self):
         button_width = MENU_BUTTON_WIDTH

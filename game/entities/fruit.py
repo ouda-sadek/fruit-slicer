@@ -5,7 +5,6 @@ import os
 import random
 import string
 from os import *
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from config import *
 
@@ -70,3 +69,5 @@ class Fruit:
             letter_text = self.font.render(self.letter, True, WHITE)  
             letter_rect = letter_text.get_rect(center=(self.rect.centerx, self.rect.centery - self.size // 2 - 10))  
             screen.blit(letter_text, letter_rect)
+
+#####################################

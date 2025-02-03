@@ -197,9 +197,10 @@ class GameState:
                 self.last_object_spawn_time = time.time()
 
             # Update fruit
-            for obj in list(self.objects):
+            for obj in self.objects[:]:
                 obj.update()
                 if obj.y < -obj.size:
+                #if obj.y >= SCREEN_HEIGHT + obj.size: 
                     self.objects.remove(obj)
                     self.strikes += 1
                     if self.strikes >= MAX_STRIKES:
@@ -210,6 +211,7 @@ class GameState:
         self.screen.fill(BLACK)
         for obj in self.objects:
             obj.draw(self.screen)
+        
         
         # Dessiner le score et les vies restantes
         score_text = self.font.render(f"Score: {self.score}", True, SCORE_COLOR)
