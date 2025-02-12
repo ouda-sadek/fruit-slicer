@@ -3,7 +3,7 @@ import pygame
 from pygame.locals import *
 from config import *
 from game.entities.button import Button
-
+import os
 class GameOver:
     def __init__(self, screen, score=0):
         self.screen = screen
@@ -11,6 +11,8 @@ class GameOver:
         self.score = score
         self.buttons = self.create_buttons()
         self.next_state = None
+        self.background = pygame.image.load(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../assets/images/background2.webp")))
+        self.background = pygame.transform.scale(self.background, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
     def create_buttons(self):
          # Space between buttons
@@ -56,7 +58,9 @@ class GameOver:
         return self.next_state if hasattr(self, 'next_state') else None
     def draw(self):
         # Draw the screen final game
-        self.screen.fill(BLACK)
+        self.screen.blit(self.background, (0, 0))
+
+        # Draw the game over text and score  at the center of the screen
         game_over_text = self.font.render("Game Over", True, GAME_OVER_TEXT_COLOR)
         game_over_rect = game_over_text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 - GAME_OVER_FONT_SIZE))
         self.screen.blit(game_over_text, game_over_rect)

@@ -47,6 +47,7 @@ def main():
                 print("Changing to Menu")
                 current_state = Menu(screen)
             elif next_state == "play":
+                
                 print("Changing to GameState")
                 current_state = GameState(screen)
             elif next_state == "game_over":

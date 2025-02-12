@@ -14,7 +14,7 @@ class Button:
         self.color = color
         self.hover_color = hover_color
         self.rect = pygame.Rect(x, y, width, height)
-        self.text_surface = self.font.render(text, True, WHITE)
+        self.text_surface = self.font.render(text, True, BLACK)
         self.text_rect = self.text_surface.get_rect(center=self.rect.center)
 
     def draw(self, screen):
